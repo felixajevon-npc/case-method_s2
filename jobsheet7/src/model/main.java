@@ -6,10 +6,10 @@ public class main {
     public static void main(String[] args) {
         mahasiswa[] daftarMahasiswa = new mahasiswa[3];
         matakuliah[] daftarMK = new matakuliah[3];
-        nilai[] daftarNilai = new nilai[5];
+        penilaian[] daftarNilai = new penilaian[5];
         Scanner scanner = new Scanner(System.in);
 
-        sistemakademik sistem = new sistemakademik(daftarMahasiswa, daftarMK, daftarNilai, scanner);
+        sistemakademik sistem = new sistemakademik(daftarMahasiswa, daftarMK, daftarNilai);
         sistem.isiData();
 
         int pilihan;
@@ -38,7 +38,10 @@ public class main {
                     sistem.urutkanNilaiAkhir();
                     break;
                 case 5:
-                    sistem.cariMahasiswa();
+                    scanner.nextLine(); // Clear the newline character
+                    System.out.print("Masukkan NIM: ");
+                    String nimInput = scanner.nextLine();
+                    sistem.cariMahasiswa(nimInput);
                     break;
                 case 0:
                     System.out.println("Keluar...");

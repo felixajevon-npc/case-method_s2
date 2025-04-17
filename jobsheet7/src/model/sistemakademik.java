@@ -5,14 +5,12 @@ import java.util.Scanner;
 public class sistemakademik {
     mahasiswa[] daftarMahasiswa;
     matakuliah[] daftarMK;
-    nilai[] daftarNilai;
-    Scanner scanner;
+    penilaian[] daftarNilai;
 
-    public sistemakademik(mahasiswa[] daftarMahasiswa, matakuliah[] daftarMK, nilai[] daftarNilai, Scanner scanner) {
+    public sistemakademik(mahasiswa[] daftarMahasiswa, matakuliah[] daftarMK, penilaian[] daftarNilai) {
         this.daftarMahasiswa = daftarMahasiswa;
         this.daftarMK = daftarMK;
         this.daftarNilai = daftarNilai;
-        this.scanner = scanner;
     }
 
     void isiData() {
@@ -24,11 +22,11 @@ public class sistemakademik {
         daftarMK[1] = new matakuliah("MK002", "Basis Data", 3);
         daftarMK[2] = new matakuliah("MK003", "Desain Web", 3);
 
-        daftarNilai[0] = new nilai("22001", "MK001", 80, 85, 90);
-        daftarNilai[1] = new nilai("22001", "MK002", 70, 65, 68);
-        daftarNilai[2] = new nilai("22002", "MK001", 75, 70, 80);
-        daftarNilai[3] = new nilai("22003", "MK002", 85, 80, 88);
-        daftarNilai[4] = new nilai("22003", "MK003", 65, 60, 75);
+        daftarNilai[0] = new penilaian("22001", "MK001", 80, 85, 90);
+        daftarNilai[1] = new penilaian("22001", "MK002", 70, 65, 68);
+        daftarNilai[2] = new penilaian("22002", "MK001", 75, 70, 80);
+        daftarNilai[3] = new penilaian("22003", "MK002", 85, 80, 88);
+        daftarNilai[4] = new penilaian("22003", "MK003", 65, 60, 75);
     }
 
     void tampilkanMahasiswa() {
@@ -47,7 +45,7 @@ public class sistemakademik {
 
     void tampilkanPenilaian() {
         for (int i = 0; i < daftarNilai.length; i++) {
-            nilai n = daftarNilai[i];
+            penilaian n = daftarNilai[i];
             String nama = cariNamaMahasiswa(n.nim);
             String mk = cariNamaMK(n.kodeMK);
             double nilaiAkhir = n.hitungNilaiAkhir();
@@ -59,7 +57,7 @@ public class sistemakademik {
         for (int i = 0; i < daftarNilai.length - 1; i++) {
             for (int j = 0; j < daftarNilai.length - i - 1; j++) {
                 if (daftarNilai[j].hitungNilaiAkhir() < daftarNilai[j + 1].hitungNilaiAkhir()) {
-                    nilai temp = daftarNilai[j];
+                    penilaian temp = daftarNilai[j];
                     daftarNilai[j] = daftarNilai[j + 1];
                     daftarNilai[j + 1] = temp;
                 }
@@ -68,14 +66,12 @@ public class sistemakademik {
         tampilkanPenilaian();
     }
 
-    void cariMahasiswa() {
-        System.out.print("Masukkan NIM: ");
-        String input = scanner.next();
+    void cariMahasiswa(String nimInput) {
         boolean ditemukan = false;
-
         for (int i = 0; i < daftarMahasiswa.length; i++) {
-            if (daftarMahasiswa[i].nim.equals(input)) {
-                System.out.println("Ditemukan: " + daftarMahasiswa[i].nama + " | Prodi: " + daftarMahasiswa[i].prodi);
+            if (daftarMahasiswa[i].nim.equals(nimInput)) {
+                System.out.println("Ditemukan: " + daftarMahasiswa[i].nama +
+                        " | Prodi: " + daftarMahasiswa[i].prodi);
                 ditemukan = true;
                 break;
             }
