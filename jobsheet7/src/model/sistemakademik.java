@@ -3,49 +3,16 @@ package model;
 import java.util.Scanner;
 
 public class sistemakademik {
-    mahasiswa[] daftarMahasiswa = new mahasiswa[3];
-    matakuliah[] daftarMK = new matakuliah[3];
-    nilai[] daftarNilai = new nilai[5];
-    Scanner scanner = new Scanner(System.in);
+    mahasiswa[] daftarMahasiswa;
+    matakuliah[] daftarMK;
+    nilai[] daftarNilai;
+    Scanner scanner;
 
-    void mulai() {
-        isiData();
-
-        int pilihan;
-        do {
-            System.out.println("\n=== MENU SISTEM AKADEMIK ===");
-            System.out.println("1. Tampilkan Daftar Mahasiswa");
-            System.out.println("2. Tampilkan Daftar Mata Kuliah");
-            System.out.println("3. Tampilkan Data Penilaian");
-            System.out.println("4. Urutkan Mahasiswa Berdasarkan Nilai Akhir");
-            System.out.println("5. Cari Mahasiswa Berdasarkan NIM");
-            System.out.println("0. Keluar");
-            System.out.print("Pilih menu: ");
-            pilihan = scanner.nextInt();
-
-            switch (pilihan) {
-                case 1:
-                    tampilkanMahasiswa();
-                    break;
-                case 2:
-                    tampilkanMK();
-                    break;
-                case 3:
-                    tampilkanPenilaian();
-                    break;
-                case 4:
-                    urutkanNilaiAkhir();
-                    break;
-                case 5:
-                    cariMahasiswa();
-                    break;
-                case 0:
-                    System.out.println("Keluar...");
-                    break;
-                default:
-                    System.out.println("Pilihan tidak valid.");
-            }
-        } while (pilihan != 0);
+    public sistemakademik(mahasiswa[] daftarMahasiswa, matakuliah[] daftarMK, nilai[] daftarNilai, Scanner scanner) {
+        this.daftarMahasiswa = daftarMahasiswa;
+        this.daftarMK = daftarMK;
+        this.daftarNilai = daftarNilai;
+        this.scanner = scanner;
     }
 
     void isiData() {
@@ -137,4 +104,3 @@ public class sistemakademik {
         return "";
     }
 }
-
